@@ -55,6 +55,19 @@ const checkEmail = (email) => {
 		showError(email, 'Email is incorrect');
 	}
 };
+const checkErrors = () => {
+	const allItems = document.querySelectorAll('.form-box');
+	let errorCount = 0;
+	allItems.forEach((e) => {
+		if (e.classList.contains('error')) {
+			errorCount++;
+		}
+	});
+	if (errorCount === 0) {
+		popup.classList.add('show-popup');
+	}
+};
+
 singIn.addEventListener('click', (e) => {
 	e.preventDefault();
 	checkForm([username, password, password1, email]);
@@ -62,4 +75,5 @@ singIn.addEventListener('click', (e) => {
 	checkLength(password, 8);
 	checkPassword(password, password1);
 	checkEmail(email);
+	checkErrors();
 });
